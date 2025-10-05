@@ -1,0 +1,78 @@
+<div class="py-12 sm:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            <div class="animate-fade-in-slow">
+                <div class="relative overflow-hidden p-8 lg:pr-0">
+                    <img class="w-full h-auto object-cover rounded-lg shadow-xl" [src]="aboutImgSrc" alt="Imagem Sobre Nós"/>
+                </div>
+            </div>
+            
+            <div class="animate-fade-in-slow">
+                <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-gray-800">#1 Place To Find The Perfect Property</h1>
+                <p class="mb-6 text-gray-600">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                
+                <div class="space-y-3 mb-6">
+                    <p class="flex items-start text-gray-700">
+                        <i class="fa fa-check text-xl text-blue-600 mr-3 mt-1"></i>
+                        Tempor erat elitr rebum at clita
+                    </p>
+                    <p class="flex items-start text-gray-700">
+                        <i class="fa fa-check text-xl text-blue-600 mr-3 mt-1"></i>
+                        Aliqu diam amet diam et eos
+                    </p>
+                    <p class="flex items-start text-gray-700">
+                        <i class="fa fa-check text-xl text-blue-600 mr-3 mt-1"></i>
+                        Clita duo justo magna dolore erat amet
+                    </p>
+                </div>
+                
+                <a routerLink="/contato"
+                   class="inline-block bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md">
+                    Read More
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr class="border-gray-100 my-8">
+
+<app-cta></app-cta>
+
+<hr class="border-gray-100 my-8">
+
+<div class="py-12 sm:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mx-auto mb-12" style="max-width: 600px;">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-3 text-gray-800 animate-fade-in-down">
+                Property Agents
+            </h2>
+            <p class="text-gray-600">Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div *ngFor="let member of teamMembers; let i = index" class="animate-fade-in">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 transform hover:scale-[1.02]">
+                    <div class="relative overflow-hidden">
+                        <img class="w-full h-auto object-cover" [src]="member.imgSrc" alt="Agente"/>
+                        
+                        <div class="absolute inset-x-0 bottom-0 flex justify-center transform translate-y-1/2">
+                            <div class="flex space-x-2 bg-white p-2 rounded-full shadow-lg border border-gray-100">
+                                <a class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600 text-white hover:bg-blue-700 transition duration-300" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600 text-white hover:bg-blue-700 transition duration-300" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600 text-white hover:bg-blue-700 transition duration-300" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center p-4 pt-12">
+                        <h5 class="text-lg font-bold mb-0 text-gray-800">{{ member.name }}</h5>
+                        <small class="text-gray-500">{{ member.designation }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

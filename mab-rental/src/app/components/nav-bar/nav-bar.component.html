@@ -1,0 +1,95 @@
+<nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+
+            <a routerLink="/" class="flex items-center text-center">
+                <div class="icon p-2 mr-2 bg-gray-100 rounded-lg">
+                    <img class="w-7 h-7 object-contain" [src]="iconDeal" alt="Icon" />
+                </div>
+                <h1 class="m-0 text-xl sm:text-2xl font-bold text-blue-600">Alugue Aqui</h1>
+            </a>
+
+            <div class="hidden lg:flex flex-1 justify-end items-center">
+                <div class="flex space-x-4 mr-6 items-center">
+                    
+                    <a
+                        (click)="handleAuthClick()"
+                        [routerLink]="isAuthenticated ? null : '/login'"
+                        class="text-gray-600 hover:text-blue-600 px-3 py-2 text-lg font-medium cursor-pointer transition duration-300"
+                    >
+                        {{ isAuthenticated ? 'Sair' : 'Login' }}
+                    </a>
+
+                    <a routerLink="/" routerLinkActive="text-blue-600 font-bold" [routerLinkActiveOptions]="{exact: true}"
+                        class="text-gray-600 hover:text-blue-600 px-3 py-2 text-lg font-medium transition duration-300">
+                        Início
+                    </a>
+
+                    <div class="relative group">
+                        <button (click)="toggleImoveisDropdown()"
+                            class="flex items-center text-gray-600 hover:text-blue-600 px-3 py-2 text-lg font-medium transition duration-300 focus:outline-none">
+                            Imóveis <i class="fa fa-angle-down ml-1 text-sm"></i>
+                        </button>
+                        <div [class.hidden]="!isImoveisDropdownOpen"
+                             class="absolute left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 ring-1 ring-black ring-opacity-5 transition duration-300">
+                            <a routerLink="/rentals" (click)="toggleImoveisDropdown()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Lista de Imóveis</a>
+                            <a routerLink="/types" (click)="toggleImoveisDropdown()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Tipos de Imóveis</a>
+                            <a routerLink="/agents" (click)="toggleImoveisDropdown()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Corretores</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button (click)="togglePaginasDropdown()"
+                            class="flex items-center text-gray-600 hover:text-blue-600 px-3 py-2 text-lg font-medium transition duration-300 focus:outline-none">
+                            Páginas <i class="fa fa-angle-down ml-1 text-sm"></i>
+                        </button>
+                        <div [class.hidden]="!isPaginasDropdownOpen"
+                             class="absolute left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 ring-1 ring-black ring-opacity-5 transition duration-300">
+                            <a routerLink="/testimonials" (click)="togglePaginasDropdown()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Comentários</a>
+                            <a routerLink="/404" (click)="togglePaginasDropdown()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">404 Error</a>
+                        </div>
+                    </div>
+
+                    <a routerLink="/contact" routerLinkActive="text-blue-600 font-bold"
+                        class="text-gray-600 hover:text-blue-600 px-3 py-2 text-lg font-medium transition duration-300">
+                        Contato
+                    </a>
+                </div>
+
+                <a routerLink="/newrental"
+                    class="hidden lg:inline-flex items-center bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 ml-4">
+                    Adicionar Imóvel
+                </a>
+            </div>
+
+            <div class="lg:hidden">
+                <button (click)="toggleMenu()" type="button" class="text-gray-500 hover:text-gray-700 focus:outline-none p-2 rounded-md">
+                    <span class="sr-only">Abrir Menu</span>
+                    <i class="fas fa-bars h-6 w-6" *ngIf="!isMenuOpen"></i>
+                    <i class="fas fa-times h-6 w-6" *ngIf="isMenuOpen"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div [class.hidden]="!isMenuOpen" class="lg:hidden border-t border-gray-100">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <a (click)="handleAuthClick(); isMenuOpen = false" [routerLink]="isAuthenticated ? null : '/login'"
+               class="block text-gray-600 hover:bg-gray-50 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">
+               {{ isAuthenticated ? 'Sair' : 'Login' }}
+            </a>
+            <a routerLink="/" (click)="isMenuOpen = false" class="block text-gray-600 hover:bg-gray-50 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">Início</a>
+            
+            <a routerLink="/rentals" (click)="isMenuOpen = false" class="block text-gray-600 hover:bg-gray-50 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">Lista de Imóveis</a>
+            <a routerLink="/types" (click)="isMenuOpen = false" class="block text-gray-600 hover:bg-gray-50 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">Tipos de Imóveis</a>
+            <a routerLink="/agents" (click)="isMenuOpen = false" class="block text-gray-600 hover:bg-gray-50 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">Corretores</a>
+            <a routerLink="/testimonials" (click)="isMenuOpen = false" class="block text-gray-600 hover:bg-gray-50 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">Comentários</a>
+            <a routerLink="/contact" (click)="isMenuOpen = false" class="block text-gray-600 hover:bg-gray-50 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">Contato</a>
+
+            <a routerLink="/newrental" (click)="isMenuOpen = false"
+                class="block bg-blue-600 text-white font-semibold py-2 px-3 rounded-lg hover:bg-blue-700 text-center mt-2">
+                Adicionar Imóvel
+            </a>
+        </div>
+    </div>
+</nav>

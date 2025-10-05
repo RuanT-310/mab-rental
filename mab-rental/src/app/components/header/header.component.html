@@ -1,0 +1,39 @@
+<div class="w-full bg-white p-0">
+    <div class="grid grid-cols-1 md:grid-cols-2 items-center flex-col-reverse md:flex-row">
+        <div class="p-8 md:p-12 lg:p-20 mt-8 md:mt-0">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 text-gray-800 animate-fade-in">
+                {{ pageTitle }}
+            </h1>
+            <nav aria-label="breadcrumb" class="animate-fade-in">
+                <ol class="flex text-sm sm:text-base font-semibold text-gray-500 uppercase space-x-2">
+                    
+                    <li class="flex items-center">
+                        <a routerLink="/" class="hover:text-blue-600 transition duration-300">Home</a>
+                    </li>
+                    
+                    <ng-container *ngFor="let item of breadcrumbs; let i = index">
+                        <li class="flex items-center" *ngIf="item.label !== 'Home'">
+                            <span class="text-gray-400 mx-2 text-xl">/</span> 
+                            <ng-container *ngIf="item.isLast; else notLast">
+                                <span class="text-gray-800 font-bold">
+                                    {{ item.label }}
+                                </span>
+                            </ng-container>
+
+                            <ng-template #notLast>
+                                <a [routerLink]="item.url" class="hover:text-blue-600 transition duration-300">
+                                    {{ item.label }}
+                                </a>
+                            </ng-template>
+                        </li>
+                    </ng-container>
+
+                </ol>
+            </nav>
+        </div>
+        
+        <div class="animated fadeIn hidden md:block">
+            <img class="w-full h-auto object-cover" [src]="headerImg" alt="Imagem de Capa" />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,158 @@
+<div class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mx-auto mb-8" style="max-width: 600px;">
+            <h1 class="text-3xl sm:text-4xl font-bold mb-3 text-gray-800 animate-fade-in-down">Cadastrar Imóvel</h1>
+            <p class="text-gray-600">Preencha os detalhes do imóvel que deseja cadastrar.</p>
+        </div>
+
+        <form [formGroup]="addRentalForm" (ngSubmit)="onSubmit()" class="mx-auto max-w-4xl bg-white p-8 rounded-xl shadow-2xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div class="relative">
+                    <select
+                        formControlName="status"
+                        id="status"
+                        class="w-full h-12 px-4 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600 appearance-none"
+                        [ngClass]="{ 'border-red-500': f['status'].invalid && (f['status'].dirty || f['status'].touched) }"
+                    >
+                        <option value="" disabled selected>Selecione o status</option>
+                        <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+                    </select>
+                    <label htmlFor="status" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all">Status</label>
+                    <div *ngIf="f['status'].invalid && (f['status'].dirty || f['status'].touched)" class="mt-1 text-sm text-red-500">
+                        <p *ngIf="f['status'].errors?.['required']">Status é obrigatório</p>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <select
+                        formControlName="type"
+                        id="type"
+                        class="w-full h-12 px-4 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600 appearance-none"
+                        [ngClass]="{ 'border-red-500': f['type'].invalid && (f['type'].dirty || f['type'].touched) }"
+                    >
+                        <option value="" disabled selected>Selecione o tipo</option>
+                        <option *ngFor="let type of typeOptions" [value]="type">{{ type }}</option>
+                    </select>
+                    <label htmlFor="type" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all">Tipo</label>
+                    <div *ngIf="f['type'].invalid && (f['type'].dirty || f['type'].touched)" class="mt-1 text-sm text-red-500">
+                        <p *ngIf="f['type'].errors?.['required']">Tipo é obrigatório</p>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <input type="text" formControlName="price" id="price" placeholder=" "
+                        class="w-full h-12 px-4 border border-gray-300 rounded-lg text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 peer"
+                        [ngClass]="{ 'border-red-500 focus:ring-red-500': f['price'].invalid && (f['price'].dirty || f['price'].touched) }"
+                    />
+                    <label htmlFor="price" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Preço</label>
+                    <div *ngIf="f['price'].invalid && (f['price'].dirty || f['price'].touched)" class="mt-1 text-sm text-red-500">
+                        <p *ngIf="f['price'].errors?.['required']">Preço é obrigatório</p>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <input type="text" formControlName="title" id="title" placeholder=" "
+                        class="w-full h-12 px-4 border border-gray-300 rounded-lg text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 peer"
+                        [ngClass]="{ 'border-red-500 focus:ring-red-500': f['title'].invalid && (f['title'].dirty || f['title'].touched) }"
+                    />
+                    <label htmlFor="title" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Título</label>
+                    <div *ngIf="f['title'].invalid && (f['title'].dirty || f['title'].touched)" class="mt-1 text-sm text-red-500">
+                        <p *ngIf="f['title'].errors?.['required']">Título é obrigatório</p>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <input type="text" formControlName="location" id="location" placeholder=" "
+                        class="w-full h-12 px-4 border border-gray-300 rounded-lg text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 peer"
+                        [ngClass]="{ 'border-red-500 focus:ring-red-500': f['location'].invalid && (f['location'].dirty || f['location'].touched) }"
+                    />
+                    <label htmlFor="location" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Localização</label>
+                    <div *ngIf="f['location'].invalid && (f['location'].dirty || f['location'].touched)" class="mt-1 text-sm text-red-500">
+                        <p *ngIf="f['location'].errors?.['required']">Localização é obrigatória</p>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <input type="text" formControlName="sector" id="sector" placeholder=" "
+                        class="w-full h-12 px-4 border border-gray-300 rounded-lg text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 peer"
+                        [ngClass]="{ 'border-red-500 focus:ring-red-500': f['sector'].invalid && (f['sector'].dirty || f['sector'].touched) }"
+                    />
+                    <label htmlFor="sector" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Setor</label>
+                    <div *ngIf="f['sector'].invalid && (f['sector'].dirty || f['sector'].touched)" class="mt-1 text-sm text-red-500">
+                        <p *ngIf="f['sector'].errors?.['required']">Setor é obrigatório</p>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <input type="text" formControlName="sqft" id="sqft" placeholder=" "
+                        class="w-full h-12 px-4 border border-gray-300 rounded-lg text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 peer"
+                        [ngClass]="{ 'border-red-500 focus:ring-red-500': f['sqft'].invalid && (f['sqft'].dirty || f['sqft'].touched) }"
+                    />
+                    <label htmlFor="sqft" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Área (m²)</label>
+                    <div *ngIf="f['sqft'].invalid && (f['sqft'].dirty || f['sqft'].touched)" class="mt-1 text-sm text-red-500">
+                        <p *ngIf="f['sqft'].errors?.['required']">Área é obrigatória</p>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <input type="text" formControlName="bed" id="bed" placeholder=" "
+                        class="w-full h-12 px-4 border border-gray-300 rounded-lg text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 peer"
+                        [ngClass]="{ 'border-red-500 focus:ring-red-500': f['bed'].invalid && (f['bed'].dirty || f['bed'].touched) }"
+                    />
+                    <label htmlFor="bed" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Quartos</label>
+                    <div *ngIf="f['bed'].invalid && (f['bed'].dirty || f['bed'].touched)" class="mt-1 text-sm text-red-500">
+                        <p *ngIf="f['bed'].errors?.['required']">Quartos são obrigatórios</p>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <input type="text" formControlName="bath" id="bath" placeholder=" "
+                        class="w-full h-12 px-4 border border-gray-300 rounded-lg text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 peer"
+                        [ngClass]="{ 'border-red-500 focus:ring-red-500': f['bath'].invalid && (f['bath'].dirty || f['bath'].touched) }"
+                    />
+                    <label htmlFor="bath" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Banheiros</label>
+                    <div *ngIf="f['bath'].invalid && (f['bath'].dirty || f['bath'].touched)" class="mt-1 text-sm text-red-500">
+                        <p *ngIf="f['bath'].errors?.['required']">Banheiros são obrigatórios</p>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <input type="text" formControlName="contact" id="contact" placeholder=" "
+                        class="w-full h-12 px-4 border border-gray-300 rounded-lg text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 peer"
+                        [ngClass]="{ 'border-red-500 focus:ring-red-500': f['contact'].invalid && (f['contact'].dirty || f['contact'].touched) }"
+                    />
+                    <label htmlFor="contact" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Contato</label>
+                    <div *ngIf="f['contact'].invalid && (f['contact'].dirty || f['contact'].touched)" class="mt-1 text-sm text-red-500">
+                        <p *ngIf="f['contact'].errors?.['required']">Contato é obrigatório</p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 relative">
+                    <label htmlFor="images" class="block text-sm font-medium text-gray-700 mb-1">Imagens (Múltiplas)</label>
+                    <input
+                        type="file"
+                        formControlName="images"
+                        id="images"
+                        multiple
+                        class="w-full border border-gray-300 rounded-lg p-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        [ngClass]="{ 'border-red-500': f['images'].invalid && (f['images'].dirty || f['images'].touched) }"
+                    />
+                    <div *ngIf="f['images'].invalid && (f['images'].dirty || f['images'].touched)" class="mt-1 text-sm text-red-500">
+                        <p *ngIf="f['images'].errors?.['required']">Imagens são obrigatórias</p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 mt-4">
+                    <button 
+                        type="submit" 
+                        [disabled]="addRentalForm.invalid || isSubmitting"
+                        class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        {{ isSubmitting ? 'Cadastrando...' : 'Cadastrar Imóvel' }}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
