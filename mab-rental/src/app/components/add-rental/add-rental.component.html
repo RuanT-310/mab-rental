@@ -16,12 +16,20 @@
                         [ngClass]="{ 'border-red-500': f['status'].invalid && (f['status'].dirty || f['status'].touched) }"
                     >
                         <option value="" disabled selected>Selecione o status</option>
-                        <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+                        
+                        @for (status of statusOptions; track status) {
+                            <option [value]="status">{{ status }}</option>
+                        }
                     </select>
                     <label htmlFor="status" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all">Status</label>
-                    <div *ngIf="f['status'].invalid && (f['status'].dirty || f['status'].touched)" class="mt-1 text-sm text-red-500">
-                        <p *ngIf="f['status'].errors?.['required']">Status é obrigatório</p>
-                    </div>
+                    
+                    @if (f['status'].invalid && (f['status'].dirty || f['status'].touched)) {
+                        <div class="mt-1 text-sm text-red-500">
+                            @if (f['status'].errors?.['required']) {
+                                <p>Status é obrigatório</p>
+                            }
+                        </div>
+                    }
                 </div>
 
                 <div class="relative">
@@ -32,12 +40,20 @@
                         [ngClass]="{ 'border-red-500': f['type'].invalid && (f['type'].dirty || f['type'].touched) }"
                     >
                         <option value="" disabled selected>Selecione o tipo</option>
-                        <option *ngFor="let type of typeOptions" [value]="type">{{ type }}</option>
+                        
+                        @for (type of typeOptions; track type) {
+                            <option [value]="type">{{ type }}</option>
+                        }
                     </select>
                     <label htmlFor="type" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all">Tipo</label>
-                    <div *ngIf="f['type'].invalid && (f['type'].dirty || f['type'].touched)" class="mt-1 text-sm text-red-500">
-                        <p *ngIf="f['type'].errors?.['required']">Tipo é obrigatório</p>
-                    </div>
+                    
+                    @if (f['type'].invalid && (f['type'].dirty || f['type'].touched)) {
+                        <div class="mt-1 text-sm text-red-500">
+                            @if (f['type'].errors?.['required']) {
+                                <p>Tipo é obrigatório</p>
+                            }
+                        </div>
+                    }
                 </div>
                 
                 <div class="relative">
@@ -46,9 +62,14 @@
                         [ngClass]="{ 'border-red-500 focus:ring-red-500': f['price'].invalid && (f['price'].dirty || f['price'].touched) }"
                     />
                     <label htmlFor="price" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Preço</label>
-                    <div *ngIf="f['price'].invalid && (f['price'].dirty || f['price'].touched)" class="mt-1 text-sm text-red-500">
-                        <p *ngIf="f['price'].errors?.['required']">Preço é obrigatório</p>
-                    </div>
+                    
+                    @if (f['price'].invalid && (f['price'].dirty || f['price'].touched)) {
+                        <div class="mt-1 text-sm text-red-500">
+                            @if (f['price'].errors?.['required']) {
+                                <p>Preço é obrigatório</p>
+                            }
+                        </div>
+                    }
                 </div>
 
                 <div class="relative">
@@ -57,9 +78,14 @@
                         [ngClass]="{ 'border-red-500 focus:ring-red-500': f['title'].invalid && (f['title'].dirty || f['title'].touched) }"
                     />
                     <label htmlFor="title" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Título</label>
-                    <div *ngIf="f['title'].invalid && (f['title'].dirty || f['title'].touched)" class="mt-1 text-sm text-red-500">
-                        <p *ngIf="f['title'].errors?.['required']">Título é obrigatório</p>
-                    </div>
+                    
+                    @if (f['title'].invalid && (f['title'].dirty || f['title'].touched)) {
+                        <div class="mt-1 text-sm text-red-500">
+                            @if (f['title'].errors?.['required']) {
+                                <p>Título é obrigatório</p>
+                            }
+                        </div>
+                    }
                 </div>
                 
                 <div class="relative">
@@ -68,9 +94,14 @@
                         [ngClass]="{ 'border-red-500 focus:ring-red-500': f['location'].invalid && (f['location'].dirty || f['location'].touched) }"
                     />
                     <label htmlFor="location" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Localização</label>
-                    <div *ngIf="f['location'].invalid && (f['location'].dirty || f['location'].touched)" class="mt-1 text-sm text-red-500">
-                        <p *ngIf="f['location'].errors?.['required']">Localização é obrigatória</p>
-                    </div>
+                    
+                    @if (f['location'].invalid && (f['location'].dirty || f['location'].touched)) {
+                        <div class="mt-1 text-sm text-red-500">
+                            @if (f['location'].errors?.['required']) {
+                                <p>Localização é obrigatória</p>
+                            }
+                        </div>
+                    }
                 </div>
 
                 <div class="relative">
@@ -79,9 +110,14 @@
                         [ngClass]="{ 'border-red-500 focus:ring-red-500': f['sector'].invalid && (f['sector'].dirty || f['sector'].touched) }"
                     />
                     <label htmlFor="sector" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Setor</label>
-                    <div *ngIf="f['sector'].invalid && (f['sector'].dirty || f['sector'].touched)" class="mt-1 text-sm text-red-500">
-                        <p *ngIf="f['sector'].errors?.['required']">Setor é obrigatório</p>
-                    </div>
+                    
+                    @if (f['sector'].invalid && (f['sector'].dirty || f['sector'].touched)) {
+                        <div class="mt-1 text-sm text-red-500">
+                            @if (f['sector'].errors?.['required']) {
+                                <p>Setor é obrigatório</p>
+                            }
+                        </div>
+                    }
                 </div>
                 
                 <div class="relative">
@@ -90,9 +126,14 @@
                         [ngClass]="{ 'border-red-500 focus:ring-red-500': f['sqft'].invalid && (f['sqft'].dirty || f['sqft'].touched) }"
                     />
                     <label htmlFor="sqft" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Área (m²)</label>
-                    <div *ngIf="f['sqft'].invalid && (f['sqft'].dirty || f['sqft'].touched)" class="mt-1 text-sm text-red-500">
-                        <p *ngIf="f['sqft'].errors?.['required']">Área é obrigatória</p>
-                    </div>
+                    
+                    @if (f['sqft'].invalid && (f['sqft'].dirty || f['sqft'].touched)) {
+                        <div class="mt-1 text-sm text-red-500">
+                            @if (f['sqft'].errors?.['required']) {
+                                <p>Área é obrigatória</p>
+                            }
+                        </div>
+                    }
                 </div>
                 
                 <div class="relative">
@@ -101,9 +142,14 @@
                         [ngClass]="{ 'border-red-500 focus:ring-red-500': f['bed'].invalid && (f['bed'].dirty || f['bed'].touched) }"
                     />
                     <label htmlFor="bed" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Quartos</label>
-                    <div *ngIf="f['bed'].invalid && (f['bed'].dirty || f['bed'].touched)" class="mt-1 text-sm text-red-500">
-                        <p *ngIf="f['bed'].errors?.['required']">Quartos são obrigatórios</p>
-                    </div>
+                    
+                    @if (f['bed'].invalid && (f['bed'].dirty || f['bed'].touched)) {
+                        <div class="mt-1 text-sm text-red-500">
+                            @if (f['bed'].errors?.['required']) {
+                                <p>Quartos são obrigatórios</p>
+                            }
+                        </div>
+                    }
                 </div>
 
                 <div class="relative">
@@ -112,9 +158,14 @@
                         [ngClass]="{ 'border-red-500 focus:ring-red-500': f['bath'].invalid && (f['bath'].dirty || f['bath'].touched) }"
                     />
                     <label htmlFor="bath" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Banheiros</label>
-                    <div *ngIf="f['bath'].invalid && (f['bath'].dirty || f['bath'].touched)" class="mt-1 text-sm text-red-500">
-                        <p *ngIf="f['bath'].errors?.['required']">Banheiros são obrigatórios</p>
-                    </div>
+                    
+                    @if (f['bath'].invalid && (f['bath'].dirty || f['bath'].touched)) {
+                        <div class="mt-1 text-sm text-red-500">
+                            @if (f['bath'].errors?.['required']) {
+                                <p>Banheiros são obrigatórios</p>
+                            }
+                        </div>
+                    }
                 </div>
                 
                 <div class="relative">
@@ -123,9 +174,14 @@
                         [ngClass]="{ 'border-red-500 focus:ring-red-500': f['contact'].invalid && (f['contact'].dirty || f['contact'].touched) }"
                     />
                     <label htmlFor="contact" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Contato</label>
-                    <div *ngIf="f['contact'].invalid && (f['contact'].dirty || f['contact'].touched)" class="mt-1 text-sm text-red-500">
-                        <p *ngIf="f['contact'].errors?.['required']">Contato é obrigatório</p>
-                    </div>
+                    
+                    @if (f['contact'].invalid && (f['contact'].dirty || f['contact'].touched)) {
+                        <div class="mt-1 text-sm text-red-500">
+                            @if (f['contact'].errors?.['required']) {
+                                <p>Contato é obrigatório</p>
+                            }
+                        </div>
+                    }
                 </div>
 
                 <div class="md:col-span-2 relative">
@@ -138,9 +194,14 @@
                         class="w-full border border-gray-300 rounded-lg p-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
                         [ngClass]="{ 'border-red-500': f['images'].invalid && (f['images'].dirty || f['images'].touched) }"
                     />
-                    <div *ngIf="f['images'].invalid && (f['images'].dirty || f['images'].touched)" class="mt-1 text-sm text-red-500">
-                        <p *ngIf="f['images'].errors?.['required']">Imagens são obrigatórias</p>
-                    </div>
+                    
+                    @if (f['images'].invalid && (f['images'].dirty || f['images'].touched)) {
+                        <div class="mt-1 text-sm text-red-500">
+                            @if (f['images'].errors?.['required']) {
+                                <p>Imagens são obrigatórias</p>
+                            }
+                        </div>
+                    }
                 </div>
 
                 <div class="md:col-span-2 mt-4">

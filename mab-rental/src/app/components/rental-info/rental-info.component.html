@@ -1,67 +1,70 @@
 <div class="py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div *ngIf="rental; else loadingTemplate" class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            
-            <div class="animate-fade-in-slow">
-                <div class="relative overflow-hidden rounded-xl shadow-2xl">
-                    
-                    <swiper [config]="swiperConfig" class="w-full h-full">
-                        <ng-template swiperSlide *ngFor="let imageSrc of images; let i = index">
-                            <img
-                                class="w-full h-96 object-cover"
-                                [src]="imageSrc"
-                                [alt]="'Imagem do Imóvel ' + (i + 1)"
-                            />
-                        </ng-template>
-                    </swiper>
-                    
-                </div>
-            </div>
-
-            <div class="animate-fade-in-slow">
-                <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-gray-900">{{ rental.title }}</h1>
-                <p class="mb-6 text-gray-600 leading-relaxed">{{ rental.description }}</p>
-
-                <div class="space-y-3 text-lg">
-                    <p class="flex items-center text-gray-800">
-                        <i class="fa fa-cart-plus text-xl text-blue-600 mr-4 w-6 text-center"></i>
-                        <span class="font-semibold text-blue-600">{{ formatPrice(rental.price) }}</span>
-                    </p>
-                    <p class="flex items-center text-gray-700">
-                        <i class="fa fa-map-marker-alt text-xl text-blue-600 mr-4 w-6 text-center"></i>
-                        {{ rental.location }}
-                    </p>
-                    <p class="flex items-center text-gray-700">
-                        <i class="fa fa-map-pin text-xl text-blue-600 mr-4 w-6 text-center"></i>
-                        Setor {{ rental.sector }}
-                    </p>
-                    <p class="flex items-center text-gray-700">
-                        <i class="fa fa-ruler-combined text-xl text-blue-600 mr-4 w-6 text-center"></i>
-                        {{ rental.sqft }} m²
-                    </p>
-                    <p class="flex items-center text-gray-700">
-                        <i class="fa fa-bed text-xl text-blue-600 mr-4 w-6 text-center"></i>
-                        {{ rental.bed }} quartos
-                    </p>
-                    <p class="flex items-center text-gray-700">
-                        <i class="fa fa-bath text-xl text-blue-600 mr-4 w-6 text-center"></i>
-                        {{ rental.bath }} banheiros
-                    </p>
+        
+        @if (rental) {
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                
+                <div class="animate-fade-in-slow">
+                    <div class="relative overflow-hidden rounded-xl shadow-2xl">
+                        
+                        <swiper [config]="swiperConfig" class="w-full h-full">
+                            
+                            @for (imageSrc of images; track imageSrc) {
+                                <ng-template swiperSlide>
+                                    <img
+                                        class="w-full h-96 object-cover"
+                                        [src]="imageSrc"
+                                        [alt]="'Imagem do Imóvel'"
+                                    />
+                                </ng-template>
+                            }
+                        </swiper>
+                    </div>
                 </div>
 
-                <a href="tel:PROPRIETARIO" 
-                   class="inline-block mt-8 bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md">
-                    Fale com o proprietário
-                </a>
+                <div class="animate-fade-in-slow">
+                    <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-gray-900">{{ rental.title }}</h1>
+                    <p class="mb-6 text-gray-600 leading-relaxed">{{ rental.description }}</p>
+
+                    <div class="space-y-3 text-lg">
+                        <p class="flex items-center text-gray-800">
+                            <i class="fa fa-cart-plus text-xl text-blue-600 mr-4 w-6 text-center"></i>
+                            <span class="font-semibold text-blue-600">{{ formatPrice(rental.price) }}</span>
+                        </p>
+                        <p class="flex items-center text-gray-700">
+                            <i class="fa fa-map-marker-alt text-xl text-blue-600 mr-4 w-6 text-center"></i>
+                            {{ rental.location }}
+                        </p>
+                        <p class="flex items-center text-gray-700">
+                            <i class="fa fa-map-pin text-xl text-blue-600 mr-4 w-6 text-center"></i>
+                            Setor {{ rental.sector }}
+                        </p>
+                        <p class="flex items-center text-gray-700">
+                            <i class="fa fa-ruler-combined text-xl text-blue-600 mr-4 w-6 text-center"></i>
+                            {{ rental.sqft }} m²
+                        </p>
+                        <p class="flex items-center text-gray-700">
+                            <i class="fa fa-bed text-xl text-blue-600 mr-4 w-6 text-center"></i>
+                            {{ rental.bed }} quartos
+                        </p>
+                        <p class="flex items-center text-gray-700">
+                            <i class="fa fa-bath text-xl text-blue-600 mr-4 w-6 text-center"></i>
+                            {{ rental.bath }} banheiros
+                        </p>
+                    </div>
+
+                    <a href="tel:PROPRIETARIO" 
+                       class="inline-block mt-8 bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md">
+                        Fale com o proprietário
+                    </a>
+                </div>
+
             </div>
-
-        </div>
-
-        <ng-template #loadingTemplate>
+        } @else {
             <div class="text-center p-10">
                 <p class="text-xl text-gray-500">Carregando detalhes do imóvel...</p>
                 <div class="mt-4 animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600 mx-auto"></div>
             </div>
-        </ng-template>
+        }
     </div>
 </div>

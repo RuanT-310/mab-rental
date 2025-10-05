@@ -2,79 +2,85 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <ul class="flex justify-center space-x-3 mb-8">
-            <li *ngFor="let statusFilter of statusFilters; let index = index">
-                <button
-                    (click)="changeFilterParams(statusFilter)"
-                    [ngClass]="{
-                        'bg-blue-600 text-white shadow-md': (activeStatus === statusFilter || (statusFilter === 'Todas' && !activeStatus)),
-                        'border border-blue-600 text-blue-600 hover:bg-blue-50': !(activeStatus === statusFilter || (statusFilter === 'Todas' && !activeStatus))
-                    }"
-                    class="py-2 px-5 rounded-lg font-semibold transition duration-300"
-                >
-                    {{ statusFilter }}
-                </button>
-            </li>
+            @for (statusFilter of statusFilters; track statusFilter) {
+                <li>
+                    <button
+                        (click)="changeFilterParams(statusFilter)"
+                        [ngClass]="{
+                            'bg-blue-600 text-white shadow-md': (activeStatus === statusFilter || (statusFilter === 'Todas' && !activeStatus)),
+                            'border border-blue-600 text-blue-600 hover:bg-blue-50': !(activeStatus === statusFilter || (statusFilter === 'Todas' && !activeStatus))
+                        }"
+                        class="py-2 px-5 rounded-lg font-semibold transition duration-300"
+                    >
+                        {{ statusFilter }}
+                    </button>
+                </li>
+            }
         </ul>
 
-        <div *ngIf="properties.length === 0" class="text-center p-10 bg-gray-50 rounded-lg">
-            <h1 class="text-3xl font-bold mb-3 text-gray-800">Sem Imóveis Disponíveis</h1>
-            <p class="text-gray-600">Ainda não temos imóveis que correspondem aos critérios da sua busca.</p>
-        </div>
+        @if (properties.length === 0) {
+            <div class="text-center p-10 bg-gray-50 rounded-lg">
+                <h1 class="text-3xl font-bold mb-3 text-gray-800">Sem Imóveis Disponíveis</h1>
+                <p class="text-gray-600">Ainda não temos imóveis que correspondem aos critérios da sua busca.</p>
+            </div>
+        }
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div *ngFor="let property of properties; let index = index" class="animate-fade-in">
-                
-                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden">
+            @for (property of properties; track property._id) {
+                <div class="animate-fade-in">
                     
-                    <div class="relative overflow-hidden h-64">
-                        <a [routerLink]="['/rental', property._id]">
-                            <img class="w-full h-full object-cover transform hover:scale-105 transition duration-500" 
-                                 [src]="property.images[0]" 
-                                 [alt]="property.title" />
-                        </a>
+                    <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden">
                         
-                        <div class="bg-blue-600 rounded text-white absolute top-4 left-4 py-1 px-3 text-sm font-medium shadow-md">
-                            {{ property.status }}
+                        <div class="relative overflow-hidden h-64">
+                            <a [routerLink]="['/rental', property._id]">
+                                <img class="w-full h-full object-cover transform hover:scale-105 transition duration-500" 
+                                    [src]="property.images[0]" 
+                                    [alt]="property.title" />
+                            </a>
+                            
+                            <div class="bg-blue-600 rounded text-white absolute top-4 left-4 py-1 px-3 text-sm font-medium shadow-md">
+                                {{ property.status }}
+                            </div>
+                            
+                            <div class="bg-white rounded-t-lg text-blue-600 absolute bottom-0 left-4 mx-4 pt-1 px-3 text-sm font-medium shadow-md">
+                                {{ property.type }}
+                            </div>
                         </div>
-                        
-                        <div class="bg-white rounded-t-lg text-blue-600 absolute bottom-0 left-4 mx-4 pt-1 px-3 text-sm font-medium shadow-md">
-                            {{ property.type }}
+
+                        <div class="p-5 pb-0">
+                            <h5 class="text-blue-600 mb-3 text-2xl font-bold">R$ {{ property.price }}</h5>
+                            
+                            <a class="block text-xl font-semibold mb-2 text-gray-800 hover:text-blue-600 transition duration-300" 
+                               [routerLink]="['/rental', property._id]">
+                                {{ property.title }}
+                            </a>
+                            
+                            <p class="text-gray-500 text-sm">
+                                <i class="fa fa-map-marker-alt text-blue-600 mr-2"></i>
+                                {{ property.location }}
+                            </p>
                         </div>
-                    </div>
 
-                    <div class="p-5 pb-0">
-                        <h5 class="text-blue-600 mb-3 text-2xl font-bold">R$ {{ property.price }}</h5>
-                        
-                        <a class="block text-xl font-semibold mb-2 text-gray-800 hover:text-blue-600 transition duration-300" 
-                           [routerLink]="['/rental', property._id]">
-                            {{ property.title }}
-                        </a>
-                        
-                        <p class="text-gray-500 text-sm">
-                            <i class="fa fa-map-marker-alt text-blue-600 mr-2"></i>
-                            {{ property.location }}
-                        </p>
-                    </div>
-
-                    <div class="flex border-t border-gray-100 mt-4 divide-x divide-gray-100 text-sm text-gray-600">
-                        
-                        <small class="flex-1 text-center py-3">
-                            <i class="fa fa-ruler-combined text-blue-600 mr-2"></i>
-                            {{ property.sqft }}
-                        </small>
-                        
-                        <small class="flex-1 text-center py-3">
-                            <i class="fa fa-bed text-blue-600 mr-2"></i>
-                            {{ property.bed }}
-                        </small>
-                        
-                        <small class="flex-1 text-center py-3">
-                            <i class="fa fa-bath text-blue-600 mr-2"></i>
-                            {{ property.bath }}
-                        </small>
+                        <div class="flex border-t border-gray-100 mt-4 divide-x divide-gray-100 text-sm text-gray-600">
+                            
+                            <small class="flex-1 text-center py-3">
+                                <i class="fa fa-ruler-combined text-blue-600 mr-2"></i>
+                                {{ property.sqft }}
+                            </small>
+                            
+                            <small class="flex-1 text-center py-3">
+                                <i class="fa fa-bed text-blue-600 mr-2"></i>
+                                {{ property.bed }}
+                            </small>
+                            
+                            <small class="flex-1 text-center py-3">
+                                <i class="fa fa-bath text-blue-600 mr-2"></i>
+                                {{ property.bath }}
+                            </small>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
 </div>

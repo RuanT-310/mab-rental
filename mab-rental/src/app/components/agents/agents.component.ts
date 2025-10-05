@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CtaComponent } from '../cta/cta.component';
+import { RouterLink } from '@angular/router'; // Para o botão, se necessário
+// Importação do CallAction, assumindo que ele também é standalone
+import { CtaComponent } from '../cta/cta.component'; 
 
 interface Agent {
   fullName: string;
@@ -12,18 +14,20 @@ interface Agent {
 
 @Component({
   selector: 'app-agents',
-  imports: [CtaComponent],
+  standalone: true, // Componente moderno e independente
+  // Importa componentes ou módulos necessários diretamente
+  imports: [CtaComponent, RouterLink], 
   templateUrl: './agents.component.html',
   styleUrls: ['./agents.component.css']
 })
 export class AgentsComponent implements OnInit {
 
-  // Lista de agentes com caminhos de imagem atualizados para 'assets/'
+  // Lista de agentes com caminhos de imagem
   agents: Agent[] = [
     {
       fullName: "Ricardo Diniz",
       designation: "Corretor",
-      imageSrc: "assets/img/team-rdm.jpg",
+      imageSrc: "assets/img/team-rdm.jpg", // Atualizado para caminho de assets/
       facebookUrl: "",
       instagramUrl: "",
       linkedInUrl: "",
@@ -49,7 +53,6 @@ export class AgentsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // Aqui você faria a chamada à API para carregar a lista de corretores
-    // Ex: this.agentService.loadAgents().subscribe(data => this.agents = data);
+    // Lógica de inicialização aqui
   }
 }

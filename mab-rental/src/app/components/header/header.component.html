@@ -4,6 +4,7 @@
             <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 text-gray-800 animate-fade-in">
                 {{ pageTitle }}
             </h1>
+            
             <nav aria-label="breadcrumb" class="animate-fade-in">
                 <ol class="flex text-sm sm:text-base font-semibold text-gray-500 uppercase space-x-2">
                     
@@ -11,23 +12,23 @@
                         <a routerLink="/" class="hover:text-blue-600 transition duration-300">Home</a>
                     </li>
                     
-                    <ng-container *ngFor="let item of breadcrumbs; let i = index">
-                        <li class="flex items-center" *ngIf="item.label !== 'Home'">
-                            <span class="text-gray-400 mx-2 text-xl">/</span> 
-                            <ng-container *ngIf="item.isLast; else notLast">
-                                <span class="text-gray-800 font-bold">
-                                    {{ item.label }}
-                                </span>
-                            </ng-container>
-
-                            <ng-template #notLast>
-                                <a [routerLink]="item.url" class="hover:text-blue-600 transition duration-300">
-                                    {{ item.label }}
-                                </a>
-                            </ng-template>
-                        </li>
-                    </ng-container>
-
+                    @for (item of breadcrumbs; track item.label) {
+                        @if (item.label !== 'Home') {
+                            <li class="flex items-center">
+                                <span class="text-gray-400 mx-2 text-xl">/</span> 
+                                
+                                @if (item.isLast) {
+                                    <span class="text-gray-800 font-bold">
+                                        {{ item.label }}
+                                    </span>
+                                } @else {
+                                    <a [routerLink]="item.url" class="hover:text-blue-600 transition duration-300">
+                                        {{ item.label }}
+                                    </a>
+                                }
+                            </li>
+                        }
+                    }
                 </ol>
             </nav>
         </div>

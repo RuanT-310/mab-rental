@@ -1,4 +1,4 @@
-<div class="py-12">
+<div class="py-12 sm:py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center mx-auto mb-12" style="max-width: 600px;">
@@ -11,28 +11,30 @@
         </div>
 
         <div class="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-4 lg:gap-8">
-            <div *ngFor="let propsType of propertyTypes; let index = index">
-                
-                <a (click)="navigateToPropertyList(propsType.name)"
-                   class="cursor-pointer group block bg-gray-50 text-center rounded-xl p-4 sm:p-6 transition duration-300 transform hover:scale-105 hover:shadow-xl">
+            @for (propsType of propertyTypes; track propsType.name) {
+                <div>
                     
-                    <div class="p-4 sm:p-6">
-                        <div class="mb-3 flex justify-center">
-                            <img class="w-12 h-12 object-contain filter group-hover:invert-0 transition duration-300" 
-                                 [src]="propsType.imgSrc" 
-                                 [alt]="'Ícone de ' + propsType.name" />
+                    <a (click)="navigateToPropertyList(propsType.name)"
+                       class="cursor-pointer group block bg-gray-50 text-center rounded-xl p-4 sm:p-6 transition duration-300 transform hover:scale-105 hover:shadow-xl">
+                        
+                        <div class="p-4 sm:p-6">
+                            <div class="mb-3 flex justify-center">
+                                <img class="w-12 h-12 object-contain filter group-hover:invert-0 transition duration-300" 
+                                     [src]="propsType.imgSrc" 
+                                     [alt]="'Ícone de ' + propsType.name" />
+                            </div>
+                            
+                            <h6 class="text-xl font-semibold mb-2 text-gray-800 group-hover:text-blue-600 transition duration-300">
+                                {{ propsType.name }}
+                            </h6>
+                            
+                            <span class="text-sm text-gray-500">
+                                {{ countPropertiesByType(propsType.name) }} propriedades
+                            </span>
                         </div>
-                        
-                        <h6 class="text-xl font-semibold mb-2 text-gray-800 group-hover:text-blue-600 transition duration-300">
-                            {{ propsType.name }}
-                        </h6>
-                        
-                        <span class="text-sm text-gray-500">
-                            {{ countPropertiesByType(propsType.name) }} propriedades
-                        </span>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
+            }
         </div>
     </div>
 </div>

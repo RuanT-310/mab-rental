@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CommonModule, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-rental',
-  // Localização sugerida: src/app/features/rentals/pages/add-rental/
+  standalone: true,
+  imports: [ReactiveFormsModule, CommonModule, NgClass], 
   templateUrl: './add-rental.component.html',
   styleUrls: ['./add-rental.component.css']
 })
@@ -12,31 +14,28 @@ export class AddRentalComponent implements OnInit {
   addRentalForm!: FormGroup;
   isSubmitting: boolean = false;
 
-  // Listas de opções para os selects
   statusOptions = ["Recentes", "Venda", "Aluguel"];
   typeOptions = ["Casa", "Apartamento", "Terreno"];
 
   constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
-    // Inicializa o formulário reativo com todas as validações
+    // Inicializa o formulário reativo
     this.addRentalForm = this.fb.group({
       status: ['', Validators.required],
       type: ['', Validators.required],
-      price: ['', [Validators.required, Validators.pattern(/^[0-9,.]+$/)]], // Exemplo de pattern para preço
+      price: ['', [Validators.required, Validators.pattern(/^[0-9,.]+$/)]],
       title: ['', Validators.required],
       location: ['', Validators.required],
       sector: ['', Validators.required],
-      sqft: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]], // Apenas números
+      sqft: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       bed: ['', [Validators.required, Validators.min(0)]],
       bath: ['', [Validators.required, Validators.min(0)]],
       contact: ['', Validators.required],
-      // Nota: Input 'file' precisa de tratamento especial no Angular para validação/upload
-      images: [null, Validators.required] 
+      images: [null, Validators.required]
     });
   }
 
-  // Getter para acesso fácil aos controles no template
   get f() {
     return this.addRentalForm.controls;
   }
@@ -44,10 +43,9 @@ export class AddRentalComponent implements OnInit {
   // MOCK: Simula a chamada userReq.createRental()
   async mockCreateRental(data: any): Promise<{ success: boolean; error?: any }> {
     console.log('Mock: Tentativa de cadastro do imóvel:', data);
-    // Simula sucesso após 1 segundo
     return new Promise(resolve => {
       setTimeout(() => {
-        if (Math.random() > 0.1) { // 90% de chance de sucesso
+        if (Math.random() > 0.1) {
           resolve({ success: true });
         } else {
           resolve({ success: false, error: 'Erro de rede simulado' });
@@ -65,15 +63,13 @@ export class AddRentalComponent implements OnInit {
       return;
     }
     
-    // Na vida real, você precisaria de um FormData para enviar arquivos
     const dataToSend = this.addRentalForm.value;
 
     try {
       await this.mockCreateRental(dataToSend);
       alert('Imóvel cadastrado com sucesso! ✅');
       this.addRentalForm.reset();
-      // Redireciona para a home após o sucesso
-      this.router.navigate(['/']); 
+      this.router.navigate(['/']);
     } catch (error) {
       alert('Erro ao cadastrar imóvel. Tente novamente.');
     } finally {

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router'; // Adicionando RouterLink
+import { CommonModule } from '@angular/common'; // Necessário para *ngIf/pipes se usados (manter por segurança)
 
-// Interface para um item de propriedade simplificado (apenas o tipo é necessário para a contagem)
+// Interface para um item de propriedade simplificado
 interface Property {
   type: string;
 }
@@ -14,16 +15,15 @@ interface PropertyType {
 
 @Component({
   selector: 'app-rental-types',
+  // SINTAXE MODERNA
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterLink], // Adicionamos as importações
   templateUrl: './rental-types.component.html',
   styleUrls: ['./rental-types.component.css']
 })
 export class RentalTypesComponent implements OnInit {
-  // Lista de todas as propriedades carregadas (mockada)
   propertiesData: Property[] = [];
   
-  // Dados dos tipos de propriedade com caminhos de imagem
   propertyTypes: PropertyType[] = [
     { name: "Casa", imgSrc: 'assets/img/icon-house.png' },
     { name: "Residencial", imgSrc: 'assets/img/icon-villa.png' },
@@ -43,34 +43,21 @@ export class RentalTypesComponent implements OnInit {
     });
   }
 
-  // MOCK: Simulação da função de busca de todas as propriedades
   async getAllRentals(): Promise<Property[]> {
-    console.log('Mock: Buscando todos os tipos de imóveis...');
-    // Dados simulados que viriam da sua API para contagem
     return new Promise(resolve => {
         setTimeout(() => resolve([
-            { type: "Casa" },
-            { type: "Apartamento" },
-            { type: "Apartamento" },
-            { type: "Residencial" },
-            { type: "Escritorio" },
-            { type: "Prédio" },
-            { type: "Germinada" },
-            { type: "Garagem" },
-            { type: "Comercial" },
-            { type: "Casa" },
+            { type: "Casa" }, { type: "Apartamento" }, { type: "Apartamento" }, 
+            { type: "Residencial" }, { type: "Escritorio" }, { type: "Prédio" }, 
+            { type: "Germinada" }, { type: "Garagem" }, { type: "Comercial" }, { type: "Casa" },
         ]), 100); 
     });
   }
 
-  // Função para contar as propriedades por tipo
   countPropertiesByType(typeName: string): number {
     return this.propertiesData.filter((prop) => prop.type === typeName).length;
   }
 
-  // Função para gerar a URL com o tipo de propriedade (navegação no Angular)
   navigateToPropertyList(type: string): void {
-    // Redireciona para a lista de propriedades com o parâmetro de query 'type'
     this.router.navigate(['/property-list'], { queryParams: { type: type } });
   }
 }

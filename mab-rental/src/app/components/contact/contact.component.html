@@ -1,0 +1,142 @@
+<div class="py-12 sm:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mx-auto mb-12" style="max-width: 600px;">
+            <h1 class="text-3xl sm:text-4xl font-bold mb-3 text-gray-800 animate-fade-in-down">Nossos contatos</h1>
+            <p class="text-gray-600">
+                Entre em contato conosco para esclarecer suas dúvidas ou solicitar nossos serviços. Estamos sempre disponíveis para oferecer o melhor atendimento possível para você!
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-10">
+            
+            <div class="col-span-full">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    @for (item of contactInfo; track item.label) {
+                        <div class="animate-fade-in">
+                            <div class="bg-gray-100 rounded-lg p-3">
+                                <div 
+                                    class="flex items-center bg-white rounded-lg p-3 border border-dashed border-teal-500/30"
+                                    style="--tw-border-opacity: 0.3;"
+                                >
+                                    <div class="flex items-center justify-center w-12 h-12 mr-3 rounded-full bg-blue-50 text-blue-600">
+                                        <i class="fa text-xl" [ngClass]="'fa-' + item.iconClass"></i>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-sm text-gray-500 font-medium">{{ item.label }}</span>
+                                        <span class="text-gray-800 font-semibold">{{ item.value }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                
+                <div class="animate-fade-in">
+                    <iframe
+                        class="w-full rounded-xl shadow-lg"
+                        src="https://maps.google.com/maps?q=Marabá,+Pará&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        frameBorder="0"
+                        style="min-height: 400px; border: 0;"
+                        allowFullScreen
+                        aria-hidden="false"
+                        tabIndex="0"
+                        title="Mapa de localização"
+                    ></iframe>
+                </div>
+
+                <div class="animate-fade-in">
+                    <p class="mb-6 text-gray-600">
+                        Preencha o formulário abaixo para entrar em contato conosco. Envie suas dúvidas, sugestões ou solicite mais informações sobre as casas disponíveis para alugar. Nossa equipe receberá sua mensagem por e-mail e retornará o mais breve possível!
+                    </p>
+                    
+                    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            
+                            <div class="relative">
+                                <input type="text" formControlName="name" id="name" placeholder=" "
+                                    class="w-full h-12 px-4 border border-gray-300 rounded-lg text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 peer"
+                                    [ngClass]="{ 'border-red-500 focus:ring-red-500': f['name'].invalid && (f['name'].dirty || f['name'].touched) }"
+                                />
+                                <label htmlFor="name" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Seu nome</label>
+                                
+                                @if (f['name'].invalid && (f['name'].dirty || f['name'].touched)) {
+                                    <div class="mt-1 text-sm text-red-500">
+                                        @if (f['name'].errors?.['required']) {
+                                            <p>O nome é obrigatório.</p>
+                                        }
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="relative">
+                                <input type="email" formControlName="email" id="email" placeholder=" "
+                                    class="w-full h-12 px-4 border border-gray-300 rounded-lg text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 peer"
+                                    [ngClass]="{ 'border-red-500 focus:ring-red-500': f['email'].invalid && (f['email'].dirty || f['email'].touched) }"
+                                />
+                                <label htmlFor="email" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Seu email</label>
+                                
+                                @if (f['email'].invalid && (f['email'].dirty || f['email'].touched)) {
+                                    <div class="mt-1 text-sm text-red-500">
+                                        @if (f['email'].errors?.['required']) {
+                                            <p>O email é obrigatório.</p>
+                                        }
+                                        @if (f['email'].errors?.['email']) {
+                                            <p>O email é inválido.</p>
+                                        }
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="sm:col-span-2 relative">
+                                <input type="text" formControlName="subject" id="subject" placeholder=" "
+                                    class="w-full h-12 px-4 border border-gray-300 rounded-lg text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 peer"
+                                    [ngClass]="{ 'border-red-500 focus:ring-red-500': f['subject'].invalid && (f['subject'].dirty || f['subject'].touched) }"
+                                />
+                                <label htmlFor="subject" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Título da mensagem</label>
+                                
+                                @if (f['subject'].invalid && (f['subject'].dirty || f['subject'].touched)) {
+                                    <div class="mt-1 text-sm text-red-500">
+                                        @if (f['subject'].errors?.['required']) {
+                                            <p>O título é obrigatório.</p>
+                                        }
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="sm:col-span-2 relative">
+                                <textarea formControlName="message" id="message" placeholder=" "
+                                    class="w-full h-36 px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 peer"
+                                    [ngClass]="{ 'border-red-500 focus:ring-red-500': f['message'].invalid && (f['message'].dirty || f['message'].touched) }"
+                                ></textarea>
+                                <label htmlFor="message" class="absolute left-4 -top-3.5 text-gray-600 text-sm bg-white px-1 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-blue-600 peer-focus:text-sm">Mensagem</label>
+                                
+                                @if (f['message'].invalid && (f['message'].dirty || f['message'].touched)) {
+                                    <div class="mt-1 text-sm text-red-500">
+                                        @if (f['message'].errors?.['required']) {
+                                            <p>A mensagem é obrigatória.</p>
+                                        }
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <button 
+                                    type="submit" 
+                                    [disabled]="contactForm.invalid || isSubmitting"
+                                    class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    {{ isSubmitting ? 'Enviando...' : 'Enviar mensagem' }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

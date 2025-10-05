@@ -65,8 +65,11 @@
             <div class="lg:hidden">
                 <button (click)="toggleMenu()" type="button" class="text-gray-500 hover:text-gray-700 focus:outline-none p-2 rounded-md">
                     <span class="sr-only">Abrir Menu</span>
-                    <i class="fas fa-bars h-6 w-6" *ngIf="!isMenuOpen"></i>
-                    <i class="fas fa-times h-6 w-6" *ngIf="isMenuOpen"></i>
+                    @if (!isMenuOpen) {
+                        <i class="fas fa-bars h-6 w-6"></i>
+                    } @else {
+                        <i class="fas fa-times h-6 w-6"></i>
+                    }
                 </button>
             </div>
         </div>
@@ -93,3 +96,9 @@
         </div>
     </div>
 </nav>
+
+---
+
+Com esta refatoração, todos os seus componentes estão na sintaxe moderna! 🎉
+
+Qual é o código do seu **`App.js`**? Ele é a peça final que define a estrutura global da aplicação.

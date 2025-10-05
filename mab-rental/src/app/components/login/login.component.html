@@ -27,10 +27,16 @@
                         E-mail
                     </label>
                     
-                    <div *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)" class="mt-1 text-sm text-red-500">
-                        <p *ngIf="f['email'].errors?.['required']">E-mail é obrigatório</p>
-                        <p *ngIf="f['email'].errors?.['email']">E-mail inválido</p>
-                    </div>
+                    @if (f['email'].invalid && (f['email'].dirty || f['email'].touched)) {
+                        <div class="mt-1 text-sm text-red-500">
+                            @if (f['email'].errors?.['required']) {
+                                <p>E-mail é obrigatório</p>
+                            }
+                            @if (f['email'].errors?.['email']) {
+                                <p>E-mail inválido</p>
+                            }
+                        </div>
+                    }
                 </div>
 
                 <div class="col-span-full relative">
@@ -51,9 +57,13 @@
                         Senha
                     </label>
 
-                    <div *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)" class="mt-1 text-sm text-red-500">
-                        <p *ngIf="f['password'].errors?.['required']">Senha é obrigatória</p>
-                    </div>
+                    @if (f['password'].invalid && (f['password'].dirty || f['password'].touched)) {
+                        <div class="mt-1 text-sm text-red-500">
+                            @if (f['password'].errors?.['required']) {
+                                <p>Senha é obrigatória</p>
+                            }
+                        </div>
+                    }
                 </div>
 
                 <div class="col-span-full">

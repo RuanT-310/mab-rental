@@ -1,0 +1,41 @@
+<div class="py-12 sm:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mx-auto mb-12" style="max-width: 600px;">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-3 text-gray-800 animate-fade-in-down">
+                Nossos clientes dizem!
+            </h2>
+            <p class="text-gray-600">
+                Descubra o que nossos clientes têm a dizer sobre suas experiências. Suas opiniões refletem a qualidade e confiança que oferecemos em cada serviço!
+            </p>
+        </div>
+
+        <div class="animate-fade-in">
+            <swiper [config]="swiperConfig">
+                @for (testimonial of testimonials; track testimonial.id) {
+                    <ng-template swiperSlide>
+                        <div class="bg-gray-100 rounded-xl p-3 shadow-md">
+                            <div class="bg-white border border-gray-200 rounded-lg p-6">
+                                
+                                <p class="mb-4 text-gray-700 italic">"{{ testimonial.text }}"</p>
+                                
+                                <div class="flex items-center mt-4">
+                                    <img
+                                        class="flex-shrink-0 rounded-full object-cover shadow-sm"
+                                        [src]="testimonial.imageSrc"
+                                        [alt]="testimonial.name"
+                                        style="width: 45px; height: 45px;"
+                                    />
+                                    <div class="pl-4">
+                                        <h6 class="font-bold mb-0 text-gray-800">{{ testimonial.name }}</h6>
+                                        <small class="text-gray-500">{{ testimonial.role }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                }
+            </swiper>
+        </div>
+    </div>
+</div>

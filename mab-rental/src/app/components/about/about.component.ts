@@ -1,15 +1,29 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+// Assumindo que CtaComponent também é standalone
+import { CtaComponent } from '../cta/cta.component'; 
+
+interface TeamMember {
+  imgSrc: string;
+  delay: string;
+  name: string;
+  designation: string;
+}
 
 @Component({
   selector: 'app-about',
+  // SINTAXE MODERNA
+  standalone: true, 
+  imports: [CommonModule, RouterLink, CtaComponent], 
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-  aboutImgSrc: string = 'assets/img/about.jpg'; // Caminho para a imagem
+  aboutImgSrc: string = 'assets/img/about.jpg';
   
   // Caminhos das imagens da equipe (para uso no loop)
-  teamMembers = [
+  teamMembers: TeamMember[] = [
     { imgSrc: 'assets/img/team-1.jpg', delay: '0.1s', name: 'Full Name 1', designation: 'Designation 1' },
     { imgSrc: 'assets/img/team-2.jpg', delay: '0.3s', name: 'Full Name 2', designation: 'Designation 2' },
     { imgSrc: 'assets/img/team-3.jpg', delay: '0.5s', name: 'Full Name 3', designation: 'Designation 3' },
