@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common'; // Necessário para pipes e classes dinâmicas
 import { SwiperOptions } from 'swiper/types';
@@ -24,7 +24,8 @@ interface Rental {
   selector: 'app-rental-info',
   standalone: true,
   // Adiciona RouterLink e CommonModule para suportar o novo template
-  imports: [CommonModule, RouterLink], 
+  imports: [CommonModule], 
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],  
   templateUrl: './rental-info.component.html',
   styleUrls: ['./rental-info.component.css'],
 })
@@ -40,10 +41,10 @@ export class RentalInfoComponent implements OnInit {
       bed: 2,
       bath: 2,
       images: [
-        'assets/img/rental-1.jpg', // Adicione caminhos reais
-        'assets/img/rental-2.jpg',
-        'assets/img/rental-3.jpg',
-        'assets/img/rental-4.jpg',
+        '/amostras/1-1.jpg', // Adicione caminhos reais
+        '/amostras/1-2.jpg',
+        '/amostras/1-3.jpg',
+        '/amostras/2-1.jpg',
       ],
     };
   images: string[] = [];
@@ -77,7 +78,7 @@ export class RentalInfoComponent implements OnInit {
     const mockRentalData: Rental = {
         id: id, title: 'Apartamento de Luxo com Vista Panorâmica', description: 'Este é um lindo apartamento...',
         price: 3500.00, location: 'Rua Principal, 123', sector: 'Centro', sqft: 85, bed: 2, bath: 2,
-        images: ['assets/img/rental-1.jpg', 'assets/img/rental-2.jpg', 'assets/img/rental-3.jpg', 'assets/img/rental-4.jpg'],
+        images: ['/amostras/1-1.jpg', '/amostras/1-2.jpg', '/amostras/1-3.jpg', '/amostras/2-3.jpg'],
     };
     setTimeout(() => {
       this.rental = mockRentalData;

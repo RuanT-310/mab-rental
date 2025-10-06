@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router'; // Para o botão, se necessário
 // Importação do CallAction, assumindo que ele também é standalone
-import { CtaComponent } from '../cta/cta.component'; 
+import { CtaComponent } from '../../components/cta/cta.component'; 
 
 interface Agent {
   fullName: string;
@@ -16,7 +16,7 @@ interface Agent {
   selector: 'app-agents',
   standalone: true, // Componente moderno e independente
   // Importa componentes ou módulos necessários diretamente
-  imports: [CtaComponent, RouterLink], 
+  imports: [CtaComponent], 
   templateUrl: './agents.component.html',
   styleUrls: ['./agents.component.css']
 })
@@ -27,7 +27,7 @@ export class AgentsComponent implements OnInit {
     {
       fullName: "Ricardo Diniz",
       designation: "Corretor",
-      imageSrc: "assets/img/team-rdm.jpg", // Atualizado para caminho de assets/
+      imageSrc: "/team-rdm.jpg", // Atualizado para caminho de assets/
       facebookUrl: "",
       instagramUrl: "",
       linkedInUrl: "",
@@ -35,7 +35,7 @@ export class AgentsComponent implements OnInit {
     {
       fullName: "Winy Soares",
       designation: "Corretor",
-      imageSrc: "assets/img/team-winy.jpg",
+      imageSrc: "/team-winy.jpg",
       facebookUrl: "",
       instagramUrl: "",
       linkedInUrl: "",
@@ -43,7 +43,7 @@ export class AgentsComponent implements OnInit {
     {
       fullName: "Ruan Vieira",
       designation: "Corretor",
-      imageSrc: "assets/img/team-ruan.png",
+      imageSrc: "/team-ruan.png",
       facebookUrl: "",
       instagramUrl: "",
       linkedInUrl: "",

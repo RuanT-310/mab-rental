@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './cta.component.css'
 })
 export class CtaComponent {
-  callToActionImg = 'assets/img/call-to-action.jpg';
+  callToActionImg = '/call-to-action.jpg';
 }

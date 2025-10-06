@@ -1,57 +1,38 @@
-import { Component, signal, inject, Input } from '@angular/core';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Necessário para ngModel
 
 @Component({
   selector: 'app-search-rental',
-  standalone: true, // Implementação moderna do Angular
-  imports: [CommonModule, FormsModule], // Importa módulos necessários para ngFor e ngModel
+  standalone: true,
+  imports: [CommonModule, FormsModule], // SINTAXE MODERNA
   templateUrl: './search-rental.component.html',
-  styleUrl: './search-rental.component.css'
+  styleUrls: ['./search-rental.component.css']
 })
-export class SearchRentalComponent {
-  // 1. Injeção segura do objeto 'window' via DOCUMENT
-  private document = inject(DOCUMENT);
+export class SearchRentalComponent implements OnInit {
+  // Estados para armazenar os valores dos selects (ngModel)
+  propertyType: string = '';
+  location: string = '';
   
-  // 2. Estado (React useState -> Angular signal)
-  // Usamos signals para reatividade moderna e tipagem estrita
-  @Input('propertyType') propertyType!: string
-  @Input('location') location!: string
+  // Listas de opções
+  propertyTypes: string[] = ["Casa", "Apartamento", "Comercial", "Germinada", "Predio", "Escritorio", "Garagem", "Residencial"];
+  locations: string[] = ["Nova Marabá", "Velha Marabá", "Cidade Nova", "Cidade Jardim", "São Felix"];
 
-  // 3. Dados para os dropdowns (Arrays)
-  readonly propertyTypes = [
-    'Casa', 'Apartamento', 'Comercial', 'Germinada', 
-    'Predio', 'Escritorio', 'Garagem', 'Residencial'
-  ];
+  constructor(private router: Router) { }
 
-  readonly locations = [
-    'Nova Marabá', 'Velha Marabá', 'Cidade Nova', 'Cidade Jardim', 'São Felix'
-  ];
+  ngOnInit(): void { }
 
-  /**
-   * Função para lidar com o clique no botão de busca.
-   * Navega para a página de listagem, adicionando os parâmetros de busca na URL.
-   */
+  // Função para lidar com o clique no botão de busca
   handleSearch(): void {
-    // Acessa o objeto window de forma segura
-    const window = this.document.defaultView; 
-    
-    if (!window) {
-      console.error("Ambiente de navegador não detectado.");
-      return;
-    }
+    console.log(`Buscando Tipo: ${this.propertyType}, Localização: ${this.location}`);
 
-    // Cria a URL com os valores atuais
-    const url = new URL(window.location.href);
-    
-    // Configura o novo caminho
-    url.pathname = "/property-list.html"; 
-    
-    // Adiciona os parâmetros de busca (os valores atuais dos signals)
-    url.searchParams.set('type', this.propertyType);
-    url.searchParams.set('sector', this.location);
-
-    // Redireciona o usuário
-    window.location.href = url.toString();
+    // Usa o Router para navegar e adicionar parâmetros de URL (Substitui a manipulação de window.location)
+    this.router.navigate(['/rentals'], { 
+      queryParams: { 
+        type: this.propertyType || null, // Passa null para remover se estiver vazio
+        sector: this.location || null
+      }
+    });
   }
 }

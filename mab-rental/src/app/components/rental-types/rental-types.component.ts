@@ -17,7 +17,7 @@ interface PropertyType {
   selector: 'app-rental-types',
   // SINTAXE MODERNA
   standalone: true,
-  imports: [CommonModule, RouterLink], // Adicionamos as importações
+  imports: [CommonModule], // Adicionamos as importações
   templateUrl: './rental-types.component.html',
   styleUrls: ['./rental-types.component.css']
 })
@@ -25,14 +25,14 @@ export class RentalTypesComponent implements OnInit {
   propertiesData: Property[] = [];
   
   propertyTypes: PropertyType[] = [
-    { name: "Casa", imgSrc: 'assets/img/icon-house.png' },
-    { name: "Residencial", imgSrc: 'assets/img/icon-villa.png' },
-    { name: "Apartamento", imgSrc: 'assets/img/icon-apartment.png' },
-    { name: "Escritorio", imgSrc: 'assets/img/icon-housing.png' },
-    { name: "Prédio", imgSrc: 'assets/img/icon-building.png' },
-    { name: "Germinada", imgSrc: 'assets/img/icon-neighborhood.png' },
-    { name: "Garagem", imgSrc: 'assets/img/icon-luxury.png' },
-    { name: "Comercial", imgSrc: 'assets/img/icon-condominium.png' },
+    { name: "Casa", imgSrc: '/icon-house.png' },
+    { name: "Residencial", imgSrc: '/icon-villa.png' },
+    { name: "Apartamento", imgSrc: '/icon-apartment.png' },
+    { name: "Escritorio", imgSrc: '/icon-housing.png' },
+    { name: "Prédio", imgSrc: '/icon-building.png' },
+    { name: "Germinada", imgSrc: '/icon-neighborhood.png' },
+    { name: "Garagem", imgSrc: '/icon-luxury.png' },
+    { name: "Comercial", imgSrc: '/icon-condominium.png' },
   ];
 
   constructor(private router: Router) {}

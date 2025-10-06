@@ -9,7 +9,7 @@ import { Router, RouterLink } from '@angular/router'; // Adicionando RouterLink 
   selector: 'app-contact',
   standalone: true,
   // Mantemos CommonModule e ReactiveFormsModule para a validação e pipes
-  imports: [CommonModule, ReactiveFormsModule, RouterLink], 
+  imports: [CommonModule, ReactiveFormsModule], 
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css']
 })

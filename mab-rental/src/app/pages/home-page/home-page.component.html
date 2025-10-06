@@ -1,0 +1,42 @@
+<div class="space-y-12 sm:space-y-16">
+    
+    <div class="py-5">
+        <app-rental-types></app-rental-types>
+    </div>
+    
+    <div class="py-5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-12 items-end mb-10">
+                
+                <div class="lg:col-span-1">
+                    <div class="text-start mx-auto animate-slide-in-left">
+                        <h2 class="text-3xl sm:text-4xl font-bold mb-3 text-gray-800">Imóveis Disponíveis</h2>
+                        <p class="text-gray-600">Explore nossa seleção de imóveis disponíveis para aluguel e encontre o lar perfeito para você. Cada opção é cuidadosamente selecionada para atender às suas necessidades e estilo de vida.</p>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-1 text-left lg:text-right animate-slide-in-right">
+                    <ul class="flex justify-start lg:justify-end mb-5" id="filter-list">
+                        </ul>
+                </div>
+            </div>
+            
+            <div>
+                <app-rental-list></app-rental-list>
+                
+                <div class="col-12 text-center mt-8">
+                    <a routerLink="/rentals" class="inline-block bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Mostrar mais Imóveis
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <app-cta></app-cta>
+
+    <div class="py-5">
+        <app-testimonial-list></app-testimonial-list>
+    </div>
+    
+</div>

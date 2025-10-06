@@ -1,0 +1,24 @@
+<div class="bg-white p-0 min-h-screen flex flex-col">
+    
+    <div class="sticky top-0 z-50">
+        <app-nav-bar></app-nav-bar>
+    </div>
+
+    <app-header></app-header>
+    
+    <div class="bg-blue-600 mb-12 p-8 shadow-xl animate-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <app-search-rental></app-search-rental>
+        </div>
+    </div>
+    
+    <main class="flex-1">
+        <router-outlet></router-outlet>
+    </main>
+    
+    <app-footer></app-footer>
+
+    <a href="#" class="fixed bottom-4 right-4 z-40 w-12 h-12 flex items-center justify-center rounded-full bg-blue-600 text-white hover:bg-blue-700 transition duration-300 shadow-lg">
+        <i class="bi bi-arrow-up fas fa-arrow-up"></i>
+    </a>
+</div>

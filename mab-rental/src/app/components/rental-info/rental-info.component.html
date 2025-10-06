@@ -7,18 +7,18 @@
                 <div class="animate-fade-in-slow">
                     <div class="relative overflow-hidden rounded-xl shadow-2xl">
                         
-                        <swiper [config]="swiperConfig" class="w-full h-full">
+                        <swiper-container [config]="swiperConfig" class="w-full h-full">
                             
                             @for (imageSrc of images; track imageSrc) {
-                                <ng-template swiperSlide>
+                                <swiper-slide>
                                     <img
                                         class="w-full h-96 object-cover"
                                         [src]="imageSrc"
                                         [alt]="'Imagem do Imóvel'"
                                     />
-                                </ng-template>
+                                </swiper-slide>
                             }
-                        </swiper>
+                        </swiper-container>
                     </div>
                 </div>
 

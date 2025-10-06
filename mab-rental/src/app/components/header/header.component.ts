@@ -20,7 +20,7 @@ interface Breadcrumb {
 export class HeaderComponent implements OnInit {
   pageTitle: string = 'Home';
   breadcrumbs: Breadcrumb[] = [];
-  headerImg: string = 'assets/img/header.jpg';
+  headerImg: string = '/header.jpg';
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 

@@ -30,10 +30,10 @@ export class RentalListComponent implements OnInit {
   activeStatus: string = "";
   
   private mockProperties: Property[] = [
-    { _id: 1, images: ['assets/img/prop-1.jpg'], status: "Venda", type: "Casa", price: "500,000", title: "Casa de Campo Moderna", location: "São Paulo, SP", sqft: "200m²", bed: "3 Quartos", bath: "2 Banheiros" },
-    { _id: 2, images: ['assets/img/prop-2.jpg'], status: "Aluguel", type: "Apartamento", price: "2.500", title: "Ap. com Varanda Gourmet", location: "Rio de Janeiro, RJ", sqft: "85m²", bed: "2 Quartos", bath: "1 Banheiro" },
-    { _id: 3, images: ['assets/img/prop-3.jpg'], status: "Top", type: "Casa", price: "800,000", title: "Cobertura de Luxo", location: "Belo Horizonte, MG", sqft: "150m²", bed: "4 Quartos", bath: "3 Banheiros" },
-    { _id: 4, images: ['assets/img/prop-4.jpg'], status: "Recentes", type: "Comercial", price: "4.000", title: "Escritório Novo", location: "Curitiba, PR", sqft: "50m²", bed: "0 Quartos", bath: "1 Banheiro" },
+    { _id: 1, images: ['amostras/1-1.jpg'], status: "Venda", type: "Casa", price: "500,000", title: "Casa de Campo Moderna", location: "São Paulo, SP", sqft: "200m²", bed: "3 Quartos", bath: "2 Banheiros" },
+    { _id: 2, images: ['amostras/1-2.jpg'], status: "Aluguel", type: "Apartamento", price: "2.500", title: "Ap. com Varanda Gourmet", location: "Rio de Janeiro, RJ", sqft: "85m²", bed: "2 Quartos", bath: "1 Banheiro" },
+    { _id: 3, images: ['amostras/1-3.jpg'], status: "Top", type: "Casa", price: "800,000", title: "Cobertura de Luxo", location: "Belo Horizonte, MG", sqft: "150m²", bed: "4 Quartos", bath: "3 Banheiros" },
+    { _id: 4, images: ['amostras/2-1.jpg'], status: "Recentes", type: "Comercial", price: "4.000", title: "Escritório Novo", location: "Curitiba, PR", sqft: "50m²", bed: "0 Quartos", bath: "1 Banheiro" },
   ];
 
   constructor(private route: ActivatedRoute, private router: Router) {}

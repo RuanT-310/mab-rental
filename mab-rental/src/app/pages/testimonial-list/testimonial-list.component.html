@@ -11,9 +11,9 @@
         </div>
 
         <div class="animate-fade-in">
-            <swiper [config]="swiperConfig">
+            <swiper-container [config]="swiperConfig">
                 @for (testimonial of testimonials; track testimonial.id) {
-                    <ng-template swiperSlide>
+                    <swiper-slide>
                         <div class="bg-gray-100 rounded-xl p-3 shadow-md">
                             <div class="bg-white border border-gray-200 rounded-lg p-6">
                                 
@@ -33,9 +33,9 @@
                                 </div>
                             </div>
                         </div>
-                    </ng-template>
+                    </swiper-slide>
                 }
-            </swiper>
+            </swiper-container>
         </div>
     </div>
 </div>

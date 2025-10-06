@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common'; // Necessário para [ngClass] e 
 })
 export class NavBarComponent implements OnInit {
   isAuthenticated: boolean = true;
-  iconDeal: string = 'assets/img/icon-deal.png';
+  iconDeal: string = '/icon-deal.png';
 
   isMenuOpen: boolean = false;
   isImoveisDropdownOpen: boolean = false;
